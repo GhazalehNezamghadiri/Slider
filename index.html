@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Document</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="css/fontello.css">
+   
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #111;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+
+
+            >.myfoot {
+                width: 170px;
+                height: 170px;
+                position: fixed;
+                bottom: 15px;
+                right: 0;
+                z-index: 999;
+                /* border: 1px solid black; */
+
+
+                &:hover {
+
+                    >img,
+                    &::before {
+                        animation-play-state: paused;
+                    }
+
+                    >figcaption {
+                        top: -10px;
+                        opacity: 1;
+                    }
+
+                    >a {
+                        right: 100%;
+                        opacity: 1;
+                    }
+                }
+
+                &::before {
+                    content: '';
+                    display: flex;
+                    position: absolute;
+                    width: 145px;
+                    height: 145px;
+                    border-radius: 50%;
+                    bottom: 10px;
+                    right: 8px;
+                    ;
+                    background-color: rgba(255, 255, 255, 0.866);
+                    animation: foot1 linear infinite alternate 6s;
+
+                }
+
+                >img {
+                    width: 125px;
+                    height: 125px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    animation: foot2 linear infinite alternate 6s;
+                    position: absolute;
+                    bottom: 18px;
+                    right: 16px;
+                    z-index: 999;
+                }
+
+                >a {
+
+                    position: absolute;
+                    right: 100px;
+                    z-index: 99;
+                    right: 50%;
+                    font-size: 30px;
+                    color: rgba(245, 245, 245, 0.896);
+                    transition: .4s;
+                    opacity: 0;
+
+                    &:nth-of-type(1) {
+                        top: 0;
+                        font-size: 28px;
+                    }
+
+                    &:nth-of-type(2) {
+                        top: 28%;
+                        font-size: 28px;
+                        transition-delay: .1s;
+                    }
+
+                    &:nth-of-type(3) {
+                        top: 56%;
+                        font-size: 31px;
+                        transition-delay: .2s;
+                    }
+
+                    &:nth-of-type(4) {
+                        top: 84%;
+                        font-size: 22px;
+                        transition-delay: .3s;
+
+                    }
+
+
+
+                }
+
+                >figcaption {
+                    width: 100%;
+                    position: absolute;
+                    text-align: center;
+                    color: wheat;
+                    text-transform: capitalize;
+                    top: 0;
+                    z-index: 90;
+                    transition: .4s;
+                    font-weight: bold;
+                    transition-delay: .2s;
+                    opacity: 0;
+                }
+            }
+
+
+        }
+
+        .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            inset: 0;
+            background-size: cover;
+            background-position: center center;
+            filter: blur(30px);
+            opacity: 0.5;
+            transition: .4s ease;
+            z-index: -10;
+
+        }
+
+        .all {
+            position: relative;
+            width: 600px;
+            height: 100vh;
+            perspective: 1000px;
+
+            >.bus {
+                position: relative;
+                left: 5%;
+                top: 5%;
+                width: 100%;
+                height: 90%;
+                transform-style: preserve-3d;
+                transition: 0.8s ease;
+
+                >.slide {
+                    position: absolute;
+                    width: 90%;
+                    height: 100%;
+                    border-radius: 12px;
+                    transition: 0.8s ease;
+                    opacity: 0;
+                    transform: scale(0.7);
+                    z-index: 0;
+                    user-select: none;
+                    pointer-events: none;
+
+                    &.center {
+                        transform: translateX(0) scale(1) rotateY(0deg);
+                        opacity: 1;
+                        z-index: 5;
+                        pointer-events: auto;
+
+                        >.info {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+
+                    &.left {
+                        transform: translateX(-60%) scale(0.8) rotateY(30deg);
+                        opacity: 0.6;
+                        z-index: 3;
+                        pointer-events: auto;
+                    }
+
+                    &.right {
+                        transform: translateX(60%) scale(0.8) rotateY(-30deg);
+                        opacity: 0.6;
+                        z-index: 3;
+                        pointer-events: auto;
+                    }
+
+                    >.info {
+                        position: absolute;
+                        left: -30px;
+                        bottom: 50px;
+                        color: rgba(255, 255, 255, 0.829);
+                        padding: 5px;
+                        border-radius: 8px;
+                        font-size: 22px;
+                        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+                        max-width: 300px;
+                        opacity: 0;
+                        transform: translateY(50px);
+                        transition: 0.5s ease;
+                        z-index: 5;
+
+                        >h1 {
+                            font-size: 40px;
+                        }
+                    }
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        background: rgba(0, 0, 0, 0.3);
+                        z-index: 1;
+                    }
+
+                    >img {
+                        width: 100%;
+                        height: 100%;
+                        object-position: center;
+                        object-fit: cover;
+                        user-select: none;
+                        pointer-events: none;
+                    }
+                }
+            }
+
+
+            >.btn {
+                position: absolute;
+                top: 50%;
+                color: #ffffffcb;
+                font-size: 50px;
+                font-weight: bold;
+                cursor: pointer;
+                z-index: 100;
+                transition: 0.3s ease;
+
+            }
+
+            >.prev {
+                left: -50%;
+            }
+
+            >.next {
+                right: -50%;
+            }
+
+        }
+
+
+        @keyframes foot1 {
+            0% {
+                border-radius: 37% 63% 41% 59% / 56% 34% 66% 44%;
+            }
+
+            50% {
+                border-radius: 64% 36% 63% 37% / 37% 59% 41% 63%;
+            }
+
+            100% {
+                border-radius: 30% 70% 51% 49% / 62% 41% 59% 38%;
+            }
+        }
+
+        @keyframes foot2 {
+            0% {
+                border-radius: 30% 70% 51% 49% / 62% 41% 59% 38%;
+            }
+
+            50% {
+                border-radius: 37% 63% 41% 59% / 56% 34% 66% 44%;
+            }
+
+            100% {
+                border-radius: 64% 36% 63% 37% / 37% 59% 41% 63%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="back"></div>
+    <div class="all">
+        <span class="btn prev">
+            <i class="ph ph-caret-left"></i>
+        </span>
+        <div class="bus">
+            <div class="slide">
+                <img src="img/milad.webp" alt="Milad Tower" />
+                <div class="info">
+                    <h1>Milad Tower</h1> is the 6th tallest tower in the world, located in Tehran, Iran.
+                </div>
+            </div>
+            <div class="slide">
+                <img src="img/eiffel.jpeg" alt="Eiffel Tower" />
+                <div class="info">
+                    <h1>The Eiffel Tower</h1> is an iconic symbol of Paris, built in 1889 for the World’s Fair.
+                </div>
+            </div>
+            <div class="slide">
+                <img src="img/galata.jpeg" alt="Galata Tower" />
+                <div class="info">
+                    <h1>Galata Tower</h1> is a medieval stone tower offering a panoramic view of Istanbul.
+                </div>
+            </div>
+            <div class="slide">
+                <img src="img/cn.jpeg" alt="CN Tower" />
+                <div class="info">
+                    <h1>CN Tower</h1> in Toronto is one of the tallest freestanding structures in the world.
+                </div>
+            </div>
+            <div class="slide">
+                <img src="img/shang.jpeg" alt="Shanghai Tower" />
+                <div class="info">
+                    <h1>Shanghai Tower</h1> is China’s tallest building with a twisting form and sky gardens.
+                </div>
+            </div>
+            <div class="slide">
+                <img src="img/clock.jpeg" alt="Clock Tower" />
+                <div class="info">Also known as <h1>Big Ben</h1>, this London landmark is a symbol of British culture.
+                </div>
+            </div>
+            <div class="slide">
+                <img src="img/khalifa.jpeg" alt="Burj Khalifa" />
+                <div class="info">
+                    <h1>Burj Khalifa</h1> in Dubai is the tallest building in the world, standing at 828 meters.
+                </div>
+            </div>
+            <div class="slide">
+                <img src="img/wilis.jpeg" alt="Willis Tower" />
+                <div class="info">
+                    <h1>Willis Tower</h1>, formerly Sears Tower, is a 110-story skyscraper in Chicago.
+                </div>
+            </div>
+            <div class="slide">
+                <img src="img/-tokyo.jpeg" alt="Tokyo Tower" />
+                <div class="info">
+                    <h1>Tokyo Tower</h1> is a red-and-white communications tower inspired by the Eiffel Tower.
+                </div>
+            </div>
+        </div>
+        <span class="btn next">
+            <i class="ph ph-caret-right"></i>
+        </span>
+    </div>
+
+    <figure class="myfoot">
+        <img src="img/ghazall.jfif" alt="">
+        <a href="https://www.linkedin.com/in/ghazaleh-nezamghadiri-06b626302/" target="_blank"><i
+                class="icon-icons8-linkedin"></i></a>
+        <a href="https://github.com/GhazalehNezamghadiri" target="_blank"><i class="icon-icons8-github"></i></a>
+        <a href="https://www.instagram.com/ghazale.ghadiri/?hl=en" target="_blank"><i
+                class=" icon-icons8-instagram"></i></a>
+        <a href="mailto:ghazalehghadiri2@gmail.com" target="_blank"><i class="icon-mail"></i></a>
+        <figcaption>ghazaleh ghadiri</figcaption>
+
+    </figure>
+
+</body>
+
+<script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const previous = document.querySelector('.prev')
+    const next = document.querySelector('.next')
+    const back = document.querySelector('.back')
+    let count = 0;
+
+
+    function Slides() {
+        const total = slides.length;
+
+        slides.forEach((slide, i) => {
+            slide.className = 'slide '
+        });
+
+        let leftIndex = count - 1;
+        if (leftIndex < 0) {
+            leftIndex = total - 1
+        }
+
+        let rightIndex = count + 1;
+        if (rightIndex >= total) {
+            rightIndex = 0
+        }
+
+
+        slides[count].classList.add('center');
+        slides[leftIndex].classList.add('left');
+        slides[rightIndex].classList.add('right');
+
+        const img = slides[count].querySelector('img')
+        back.style.backgroundImage = `url(${img.src})`
+
+        back.style.transform = 'translateX(40px)'
+        setTimeout(() => {
+            back.style.transform = 'translateX(0)'
+        }, 30);
+
+    }
+
+    next.addEventListener('click', () => {
+        count++
+        if (count >= slides.length) {
+            count = 0
+        }
+        Slides()
+    });
+
+    previous.addEventListener('click', () => {
+        count--
+        if (count < 0) {
+            count = slides.length - 1
+        }
+        Slides()
+    });
+
+
+    Slides()
+</script>
+
+
+</html>
